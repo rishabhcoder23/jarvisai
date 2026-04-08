@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  
+  --color-jarvis-blue: #00d2ff;
+  --color-jarvis-blue-glow: rgba(0, 210, 255, 0.3);
+  --color-jarvis-bg: #050a0f;
+  --color-jarvis-card: rgba(10, 20, 30, 0.8);
+  --color-jarvis-border: rgba(0, 210, 255, 0.2);
+}
+
+@layer base {
+  body {
+    @apply bg-[var(--color-jarvis-bg)] text-[var(--color-jarvis-blue)] font-sans antialiased overflow-hidden;
+    background-image: 
+      radial-gradient(circle at 50% 50%, rgba(0, 210, 255, 0.05) 0%, transparent 70%),
+      linear-gradient(rgba(0, 210, 255, 0.02) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 210, 255, 0.02) 1px, transparent 1px);
+    background-size: 100% 100%, 40px 40px, 40px 40px;
+  }
+}
+
+.jarvis-glow {
+  box-shadow: 0 0 15px var(--color-jarvis-blue-glow);
+}
+
+.jarvis-border {
+  border: 1px solid var(--color-jarvis-border);
+}
+
+.glass-panel {
+  @apply bg-[var(--color-jarvis-card)] backdrop-blur-md rounded-lg;
+  border: 1px solid var(--color-jarvis-border);
+}
+
+@keyframes scan {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(1000%); }
+}
+
+.scan-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(to bottom, transparent, var(--color-jarvis-blue), transparent);
+  opacity: 0.3;
+  animation: scan 10s linear infinite;
+  pointer-events: none;
+}
